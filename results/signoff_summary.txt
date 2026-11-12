@@ -1,0 +1,20 @@
+LibreLane sign-off summary (from flow.log, run RUN_2026-11-12_13-06-43)
+
+[13:07:00] INFO     Check for Yosys check errors clear.
+[13:21:37] INFO     Check for Routing DRC errors clear.
+[13:24:49] INFO     Check for Magic DRC errors clear.
+[13:24:49] INFO     Check for KLayout DRC errors clear.
+[13:24:57] INFO     Check for Magic Illegal Overlap errors clear.
+[13:25:02] INFO     Check for LVS errors clear.
+[13:25:02] INFO     Flow complete.
+
+Report Manufacturability:
+* Antenna
+Passed ✅
+
+* LVS
+Passed ✅
+
+* DRC
+Passed ✅
+

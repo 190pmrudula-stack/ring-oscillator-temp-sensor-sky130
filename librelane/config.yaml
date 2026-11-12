@@ -1,0 +1,36 @@
+# LibreLane configuration: dual ring-oscillator temperature sensor (sky130A, sky130_fd_sc_hd)
+DESIGN_NAME: tsense_top
+VERILOG_FILES:
+  - dir::../rtl/tsense_sync2.v
+  - dir::../rtl/tsense_ripple_cnt.v
+  - dir::../rtl/tsense_ro_ctat.v
+  - dir::../rtl/tsense_ro_ptat.v
+  - dir::../rtl/tsense_core.v
+  - dir::../rtl/tsense_top.v
+
+# Reference/control clock: 10 MHz. The ring-oscillator clocks are internal
+# and only drive ripple counters + synchronizers (no clock tree needed).
+CLOCK_PORT: clk
+CLOCK_PERIOD: 100
+
+# Floorplan
+FP_SIZING: absolute
+DIE_AREA: "0 0 230 230"
+PL_TARGET_DENSITY_PCT: 55
+
+# Small-die power grid (same style as the LibreLane spm example)
+PDN_VOFFSET: 5
+PDN_HOFFSET: 5
+PDN_VWIDTH: 2
+PDN_HWIDTH: 2
+PDN_VPITCH: 30
+PDN_HPITCH: 30
+PDN_SKIPTRIM: true
+
+# Ring oscillators are intentional combinational loops:
+#  - don't stop the flow on Yosys loop checks
+#  - lint is done separately (tb/run_sim.sh); Verilator does not like loops
+#  - don't let the resizer buffer/resize the oscillator cells and nets
+ERROR_ON_SYNTH_CHECKS: false
+RUN_LINTER: false
+RSZ_DONT_TOUCH_RX: "u_ro_.*"
